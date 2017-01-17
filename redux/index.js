@@ -23,8 +23,3 @@ export function reducer(state = initialState, action) {
       return state;
   }
 }
-export function dispatchAndLog(theStore, action) {
-  console.log('dispatching', action);
-  theStore.dispatch(action);
-  console.log('next state', theStore.getState());
-}
