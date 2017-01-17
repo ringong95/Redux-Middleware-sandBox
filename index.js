@@ -2,18 +2,15 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { reducer as todoReducer, updateTodoName } from './redux';
 
-// function shoutLogger(theStore) {
-//   return function (next) {
-//     return function dispatchAndLog(action) {
-
-//     };
-//   };
-// }
-
 const logger = theStore => next => (action) => {
-  console.log('DISPATCHING!!', action);
-  const result = next(action);
-  console.log('NEXT STATE!', theStore.getState());
+  console.info('DISPATCHING!!', action);
+  let result;
+  try {
+    result = next(action);
+    console.info('NEXT_STATE!:', theStore.getState());
+  } catch (e) {
+    console.warn('There was an error!', e);
+  }
   return result;
 };
 
