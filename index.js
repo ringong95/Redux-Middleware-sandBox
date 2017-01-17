@@ -1,6 +1,12 @@
-import { createStore } from 'redux';
-import { reducer as todoReducer } from './redux/index';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { reducer as todoReducer, updateTodoName } from './redux';
 
-const store = createStore(todoReducer);
+const store = createStore( // eslint-disable-line
+    todoReducer,
+    composeWithDevTools(
+        applyMiddleware(),
+    ),
+);
 
-console.log(store.getState());
+dispatchAndLog(store, updateTodoName('Hey tim'));

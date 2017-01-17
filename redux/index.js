@@ -16,10 +16,15 @@ export function reducer(state = initialState, action) {
     case UPDATE_TODO_NAME:
       return { ...state, newTodoName: action.payload };
     case ADD_TODO:
-      return { ...state, todos: [...state.todo, { name: state.newTodoName }] };
+      return { ...state, todos: [...state.todos, { name: state.newTodoName }] };
     case REMOVE_TODO:
       return state;
     default:
       return state;
   }
+}
+export function dispatchAndLog(theStore, action) {
+  console.log('dispatching', action);
+  theStore.dispatch(action);
+  console.log('next state', theStore.getState());
 }
